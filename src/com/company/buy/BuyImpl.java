@@ -1,9 +1,7 @@
 package com.company.buy;
-import com.company.client.Client;
 import com.company.products.Product;
 
 public class BuyImpl implements Buy {
-
 
     @Override
     public boolean buyingProduct(Product product, int count) {

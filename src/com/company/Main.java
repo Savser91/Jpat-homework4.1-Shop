@@ -6,13 +6,22 @@ import com.company.payment.PayImpl;
 import com.company.products.*;
 import java.util.*;
 
-// По итогам соблюдено:
-// отсутствуют магические числа (Magics)
-// отсутствует повторяющийся код (DRY)
-// 1 принцип  SOLID - принцип единственной ответственности соблюден
-// все классы выполняют только те функции, для которых они были созданы
-// 2 принцип SOLID - принцип открытости/закрытости соблюден.
-//
+/*
+По итогам соблюдено:
+отсутствуют магические числа (Magics)
+отсутствует повторяющийся код (DRY)
+1 принцип  SOLID - принцип единственной ответственности соблюден
+все классы выполняют только те функции, для которых они были созданы
+2 принцип SOLID - принцип открытости/закрытости соблюден.
+нам не придется менять класс клиента в случае добавления новых продуктов
+также как и не придется менять класс продукт в случае появления нового клиента
+3 принцип SOLID - принцип разделения интерфейса соблюден.
+один интерфейс отвечает за процесс покупки, а второй за возможность клиента расплатиться
+4 принцип SOLID - принцип инверсии зависимостей соблюден.
+классы Client и Product никак не зависят друг от друга.
+клиенту все равно, какой тип продукта покупать, а продукту неважно, какой именно клиент его купит
+*/
+
 public class Main {
 
     public static void main(String[] args) {
@@ -60,7 +69,7 @@ public class Main {
                     nameMatch = true;
                     int amount = p.getPrice() * countProduct;
                     if (!buy.buyingProduct(p, countProduct)) {
-                        System.out.printf("Товара " + p.getName() + " нет в наличии");
+                        System.out.println("Товара " + p.getName() + " нет в наличии");
                         continue;
                     }
                     if (!pay.clientPayment(client, amount)) {
@@ -92,8 +101,8 @@ public class Main {
             System.out.println(str);
             amount += entry.getValue() * entry.getKey().getPrice();
         }
-        System.out.println("Сумма покупки = " + amount);
-        System.out.println("Остаток средств на счету клиента: " + client.getMoneyLeft());
+        System.out.println("Сумма покупки = " + amount + " рублей");
+        System.out.println("Остаток средств на счету клиента: " + client.getMoneyLeft() + " рублей");
     }
 
 }

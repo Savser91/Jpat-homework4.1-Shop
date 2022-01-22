@@ -1,5 +1,4 @@
 package com.company.payment;
-
 import com.company.client.Client;
 
 public class PayImpl implements Pay{
